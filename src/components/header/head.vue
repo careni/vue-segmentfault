@@ -1,6 +1,5 @@
 <template>
 	<header class="head">
-
 		<!-- 搜索输入框 -->
 		<div class="headSearch">
 			<label for="key" class="fa fa-search" :class='{moveLabel:left,removeLabel:right}'></label>
@@ -10,32 +9,31 @@
 				   @blur="remove"
 				   :class='{moveInput:left,removeInput:right}'>
 		</div>
-
 		<!-- 滑动导航 -->
 		<div class="headNav">
 			<ul>
 				<li v-for='(item,index) in items'
 					:class='{active:active[index]}'
-					@click='changeActive(index)'>{{item}}</li>
+					@click='changeActive(index)'
+					:key='index'>{{item}}</li>
 			</ul>
 		</div>
-
 		<!-- 发布头条 -->
 		<div class="sendMsg fa fa-pencil-square-o"></div>
-
 		<!-- 排序 -->
 		<div class="sort fa fa-reorder" @click.stop.self='showSort'>
 			<ul v-if='sortEl'>
 				<li v-for='(item,index) in sortItems'
 					:class='{sortActive:sortActive[index]}'
-					@click.self='addSortActive(index)'>{{item}}</li>
+					@click.self='addSortActive(index)'
+					:key="index">{{item}}</li>
 			</ul>
 		</div>
 
 	</header>
 </template>
 <script>
-	import '../../style/head.scss'
+	import '../../style/head.scss';
 	export default {
 		data () {
 			return {
@@ -46,7 +44,7 @@
 				//排序栏内容
 				sortItems: ['最新的', '最热的'],
 				//导航栏点击active触发
-				active: [],
+				active: [true],
 				//排序栏是否显示
 				sortEl: false,
 				sortActive: []
